@@ -12,5 +12,5 @@ trim_trailing_whitespace = true
 trim_trailing_whitespace = false
 max_line_length = off
 
-[*.{yml,yaml,ts,js,.json,blade.php,scss}]
+[*.{yml,yaml,ts,js,.json,blade.php,scss,html}]
 indent_size = 2

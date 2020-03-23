@@ -1,0 +1,153 @@
+.app-navbar {
+  position: relative;
+  padding: 0 1rem;
+}
+
+.sidebar-toggle {
+  cursor: pointer;
+  width: 26px;
+  height: 26px;
+  margin-left: .5rem;
+}
+
+.hamburger {
+  position: relative;
+}
+
+.hamburger, .hamburger:before, .hamburger:after {
+  cursor: pointer;
+  height: 2px;
+  width: 20px;
+  background: hsla(0,0%,100%,.75);
+  display: block;
+  content: "";
+  transition: background .1s ease-in-out,color .1s ease-in-out;
+}
+
+
+.hamburger:before {
+  top: -6.5px;
+  width: 20px;
+  position: absolute;
+}
+
+.hamburger:after {
+  bottom: -6.5px;
+  width: 20px;
+  position: absolute;
+}
+
+.form-control {
+  padding: .75rem 1rem;
+  border-width: 0;
+  border-radius: 0;
+}
+
+.form-control-lite {
+  border: 0;
+  border-radius: 0;
+  box-shadow: none;
+  background: transparent;
+  color: #fff;
+}
+
+.form-control-lite::placeholder{
+  color: rgba(255, 255, 255, 0.75)
+}
+
+.form-control-lite::-webkit-input-placeholder{
+  color: rgba(255, 255, 255, 0.75);
+}
+
+.form-control-lite::-moz-placeholder{
+  color: rgba(255, 255, 255, 0.75);
+}
+
+.form-control-lite::-ms-input-placeholder{
+  color: rgba(255, 255, 255, 0.75);
+}
+
+.form-control-dark {
+  color: #fff;
+  background-color: rgba(255, 255, 255, .1);
+  border-color: rgba(255, 255, 255, .1);
+}
+
+.form-control-dark:focus {
+  border-color: transparent;
+  box-shadow: 0 0 0 3px rgba(255, 255, 255, .25);
+}
+
+.app-navbar .navbar-nav {
+  flex-direction: row;
+  padding: 0 1rem;
+}
+
+.app-navbar .nav-item{
+  line-height: 3rem !important;
+}
+
+.app-navbar .btn {
+  line-height: inherit;
+}
+
+.app-navbar .nav-link {
+  color: rgba(255, 255, 255, 0.75);
+  font-size: 20px;
+}
+
+.app-navbar .dropdown-toggle::after {
+  display: none;
+}
+
+.app-navbar .navbar .nav-item .dropdown-menu {
+  line-height: 1.5;
+}
+
+.dropdown .dropdown-menu.show {
+  -webkit-animation-name: dropdownAnimation;
+  animation-name: dropdownAnimation;
+  -webkit-animation-duration: .5s;
+  animation-duration: .5s;
+  -webkit-animation-iteration-count: 1;
+  animation-iteration-count: 1;
+  -webkit-animation-timing-function: ease;
+  animation-timing-function: ease;
+  -webkit-animation-fill-mode: forwards;
+  animation-fill-mode: forwards;
+}
+
+.dropdown-menu-lg {
+  min-width: 20rem;
+}
+
+.dropdown-header {
+  display: block;
+  padding: 0rem 1.5rem;
+  margin-bottom: 0;
+  font-size: .875rem;
+  line-height: 25px;
+  text-align: center;
+  font-weight: 600;
+  color: #6c757d;
+  white-space: nowrap;
+}
+
+.app-navbar .list-group-item {
+  line-height: 1rem;
+}
+
+.app-navbar .list-group-item svg,
+.app-navbar .list-group-item i{
+  height: 20px;
+  font-size: 20px;
+}
+
+.app-navbar .dropdown-menu-footer {
+  padding: .5rem;
+  text-align: center;
+  display: block;
+  font-size: .75rem;
+  line-height: 2rem;
+  padding: 0;
+}

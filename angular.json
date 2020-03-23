@@ -28,7 +28,7 @@
               "resources/spa/src/assets"
             ],
             "styles": [
-              "resources/spa/src/styles.scss"
+              "resources/spa/src/assets/sass/styles.scss"
             ],
             "scripts": []
           },
@@ -92,7 +92,7 @@
               "resources/spa/src/assets"
             ],
             "styles": [
-              "resources/spa/src/styles.scss"
+              "resources/spa/src/assets/sass/styles.scss"
             ],
             "scripts": []
           }

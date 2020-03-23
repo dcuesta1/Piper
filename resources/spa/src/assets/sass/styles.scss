@@ -1,0 +1,167 @@
+// Bootstrap Core
+@import "~bootstrap/scss/functions";
+@import "variables";
+@import "~bootstrap/scss/mixins";
+
+// Bootstrap Modules
+@import "~bootstrap/scss/root";
+@import "~bootstrap/scss/reboot";
+@import "~bootstrap/scss/grid";
+@import "~bootstrap/scss/forms";
+@import "~bootstrap/scss/images";
+@import "~bootstrap/scss/buttons";
+@import "~bootstrap/scss/type";
+@import "~bootstrap/scss/dropdown";
+@import "~bootstrap/scss/alert";
+@import "~bootstrap/scss/media";
+@import "~bootstrap/scss/card";
+@import "~bootstrap/scss/badge";
+@import "~bootstrap/scss/breadcrumb";
+@import "~bootstrap/scss/list-group";
+@import "~bootstrap/scss/nav";
+@import "~bootstrap/scss/navbar";
+@import "~bootstrap/scss/toasts";
+@import "~bootstrap/scss/utilities";
+@import "~bootstrap/scss/tables";
+@import "~bootstrap/scss/pagination";
+@import "~bootstrap/scss/modal";
+
+// Third Parties
+@import "~animate.css/animate.min.css";
+
+// Theme
+@import "utilities";
+
+html {
+  height: 100vh
+}
+
+body {
+  margin: 0;
+  font-family: "Nunito Sans", -apple-system, BlinkMacSystemFont, Segoe UI, Helvetica Neue, Arial, sans-serif;
+  font-size: .875rem;
+  font-weight: 400;
+  line-height: 1.5;
+  color: #203a45;
+  text-align: left;
+  height: 100%;
+  background-color: #f2f2f2;
+}
+
+app-root {
+
+  .wrapper {
+    align-items: stretch;
+    display: flex;
+    overflow: hidden;
+    width: 100%;
+    position: relative;
+
+    &:before {
+      width: 100%;
+      height: 300px;
+      position: absolute;
+      top: 0;
+      left: 0;
+      content: " ";
+      background: #0b6bd3;
+    }
+
+    #loading {
+      width: 100%;
+      height: 100%;
+      background: white;
+      position: absolute;
+      z-index: 999;
+      display: flex;
+
+      .text-loading {
+        position: absolute;
+        -ms-flex-item-align: center;
+        align-self: center;
+        width: 200px;
+        left: 50%;
+        height: 40px;
+        margin-left: -23px;
+        margin-top: 10px;
+        font-weight: 600;
+      }
+    }
+
+    #main {
+      margin-left: 200px;
+      position: relative;
+      width: 100%;
+      min-height: 100vh;
+      min-width: 0;
+      transition: margin-left .3s ease-in-out, left .3s ease-in-out, margin-right .3s ease-in-out, right .3s ease-in-out;
+
+      .content {
+        //margin-top: 3rem;
+        padding: 0 .5rem;
+
+        .content-header {
+          position: relative;
+          margin-bottom: 3rem;
+
+          .content-header-title {
+            font-size: 1.53125rem;
+            color: #fff;
+          }
+
+          .breadcrumb {
+            display: flex;
+            flex-wrap: wrap;
+            padding: 0;
+            margin-bottom: 1rem;
+            list-style: none;
+            background-color: transparent;
+            border-radius: .2rem;
+
+            .breadcrumb-item {
+              &.active {
+                color: white;
+                font-weight: 600;
+              }
+
+              &:before {
+                color: #ced4da;
+              }
+
+              a {
+                color: #dee2e6;
+                font-weight: 400;
+              }
+            }
+          }
+        }
+      }
+    }
+
+    // Auth "Templates"
+    &.auth {
+
+      &:before {
+        display: none;
+      }
+
+      #main {
+        margin-left: 0 !important;
+
+        .content {
+          height: 100%;
+        }
+      }
+    }
+
+  }
+
+}
+
+@import "../../app/auth/auth.component";
+
+@media (min-width: 992px){
+  .content {
+    padding: 0 1.5rem !important;
+  }
+}
