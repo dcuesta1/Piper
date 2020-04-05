@@ -3,7 +3,17 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
-  production: false
+  production: false,
+  mock: true,
+  apiUrl: 'http://auto.test/api',
+  homeUrl: 'localhost/',
+  passwordStrength: '^(((?=.*[a-z])(?=.*[A-Z]))|((?=.*[a-z])(?=.*[0-9]))|((?=.*[A-Z])(?=.*[0-9])))(?=.{6,})',
+  const: {
+    authToken: 'authToken',
+    currentUser: 'user',
+    deviceId: 'device',
+    impersonate: 'impersonate'
+  }
 };
 
 /*
@@ -13,4 +23,4 @@ export const environment = {
  * This import should be commented out in production mode because it will have a negative impact
  * on performance if an error is thrown.
  */
-// import 'zone.js/dist/zone-error';  // Included with Angular CLI.
+import 'zone.js/dist/zone-error';  // Included with Angular CLI.

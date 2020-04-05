@@ -3,10 +3,10 @@ import { Component, OnInit } from '@angular/core';
 @Component({
   selector: 'app-index',
   template: `
+      <app-navbar></app-navbar>
       <div class="wrapper">
           <app-sidebar></app-sidebar>
           <div id="main">
-              <app-navbar></app-navbar>
               <div class="content-wrapper">
 <!--                  <div id="loading">-->
 <!--                      <div class="spinner">-->

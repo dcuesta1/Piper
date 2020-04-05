@@ -1,0 +1,19 @@
+{
+  "token": "qweqweqweqweqwe",
+  "user": {
+      "id": 1,
+      "firstName": "Daniel",
+      "lastName": "Cuesta",
+      "email": "cuesta.daniel.ivan@gmail.com",
+      "role": 1,
+      "company": {
+          "id": 1,
+          "name": "Piper, Inc.",
+          "phone": 13212891668,
+          "email": "daniel@piper.com"
+      },
+      "createdAt": "",
+      "modifiedAt": "",
+      "deletedAt": ""
+  }
+}
