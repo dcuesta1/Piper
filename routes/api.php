@@ -14,6 +14,13 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::middleware('auth:api')->get('/user', function (Request $request) {
-    return $request->user();
+Route::post('/authenticate', 'Api\V1\Auth\LoginController');
+Route::post('/signout', 'Api\V1\Auth\LogoutController');
+
+Route::get('/test', function () {
+   return 'test works';
+});
+
+Route::get('/test/{password}', function ($password) {
+    return bcrypt($password);
 });

@@ -36,6 +36,10 @@ $app->singleton(
     App\Console\Kernel::class
 );
 
+$app->singleton('TokenAuthentication', function ($app) {
+    return new \App\Bin\TokenAuthentication();
+});
+
 $app->singleton(
     Illuminate\Contracts\Debug\ExceptionHandler::class,
     App\Exceptions\Handler::class
