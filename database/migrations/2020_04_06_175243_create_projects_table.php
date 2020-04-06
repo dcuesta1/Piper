@@ -4,33 +4,23 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateRolesTable extends Migration
+class CreateProjectsTable extends Migration
 {
-    /**
-     * Run the migrations.
-     *
-     * @return void
-     */
     public function up()
     {
-        Schema::create('roles', function (Blueprint $table) {
+        Schema::create('projects', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->bigInteger('space_id')->unsigned()->index();
             $table->foreign('space_id')->references('id')->on('spaces')->onDelete('cascade');
-            $table->string('name', 64);
-            $table->string('description', 161);
-            $table->string('permissions', 265);
+            $table->string('name');
+            $table->string('description')->nullable();
+            $table->string('repository_url')->nullable();
             $table->timestamps();
         });
     }
 
-    /**
-     * Reverse the migrations.
-     *
-     * @return void
-     */
     public function down()
     {
-        Schema::dropIfExists('roles');
+        Schema::dropIfExists('projects');
     }
 }

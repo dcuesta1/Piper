@@ -17,15 +17,14 @@ class CreateUsersTable extends Migration
     {
         Schema::create('users', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->bigInteger('company_id')->unsigned()->index();
-            $table->foreign('company_id')->references('id')->on('companies')->onDelete('cascade');
-//            $table->bigInteger('company_id')->nullable();
             $table->string('name');
             $table->string('username')->unique();
             $table->string('email')->unique();
             $table->string('phone');
             $table->string('password');
-            $table->tinyInteger('type')->default(User::EMPLOYEE_USER);
+            $table->tinyInteger('type')->default(User::BASIC_USER);
+            $table->integer('subscription_type')->default(0);
+            $table->timestamp('subscription_expiration')->nullable()->default(null);
             $table->timestamps();
             $table->softDeletes();
         });
