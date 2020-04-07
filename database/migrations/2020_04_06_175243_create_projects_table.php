@@ -12,6 +12,8 @@ class CreateProjectsTable extends Migration
             $table->bigIncrements('id');
             $table->bigInteger('space_id')->unsigned()->index();
             $table->foreign('space_id')->references('id')->on('spaces')->onDelete('cascade');
+            $table->bigInteger('creator_id')->unsigned()->index();
+            $table->foreign('creator_id')->references('id')->on('users');
             $table->string('name');
             $table->string('description')->nullable();
             $table->string('repository_url')->nullable();
