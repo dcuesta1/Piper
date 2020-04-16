@@ -71,10 +71,12 @@ return [
             'model' => App\User::class,
         ],
 
-        // 'users' => [
-        //     'driver' => 'database',
-        //     'table' => 'users',
-        // ],
+         'auth_token' => [
+             'driver' => 'database',
+             'table' => 'users',
+             "auth_user_identifier" => "username",
+             "auth_token_identifier" => "value"
+         ],
     ],
 
     /*

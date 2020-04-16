@@ -2,7 +2,7 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
-
+use App\Bin\Auth\AuthFacade as Auth;
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -18,7 +18,12 @@ Route::post('/authenticate', 'Api\V1\Auth\LoginController');
 Route::post('/signout', 'Api\V1\Auth\LogoutController');
 
 Route::get('/test', function () {
-   return 'test works';
+    $check = Auth::checkCredentials([
+        'username' => 'jsmith',
+        'password' => 'pass'
+    ]);
+
+    return response()->json(Auth::createToken());
 });
 
 Route::get('/test/{password}', function ($password) {

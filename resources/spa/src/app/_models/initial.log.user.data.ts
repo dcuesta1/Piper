@@ -1,13 +1,7 @@
 import {User} from './user.model';
-import {Deserializable} from './deserializable.model';
+import {BaseModel} from './base.model';
 
-export class InitialLogUserData implements Deserializable{
+export class InitialLogUserData extends BaseModel{
   user: User;
   token: string;
-
-  deserialize(input: any): this {
-    Object.assign(this, input);
-    this.user = new User().deserialize(input.user);
-    return this;
-  }
 }

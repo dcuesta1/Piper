@@ -1,10 +1,19 @@
 import {Injectable} from '@angular/core';
-import {HttpEvent, HttpHandler, HttpInterceptor, HttpRequest, HttpResponse} from '@angular/common/http';
+import {
+  HTTP_INTERCEPTORS,
+  HttpErrorResponse,
+  HttpEvent,
+  HttpHandler,
+  HttpInterceptor,
+  HttpRequest,
+  HttpResponse
+} from '@angular/common/http';
 import {AppService} from '../_services/app.service';
 import {Router} from '@angular/router';
-import {Observable} from 'rxjs';
-import { environment as Environment } from '../../environments/environment';
-import {tap} from 'rxjs/operators';
+import {Observable, throwError} from 'rxjs';
+import { environment  } from '../../environments/environment';
+import {switchMap, tap} from 'rxjs/operators';
+import {SnakeToCamel} from './SnakeToCamel';
 
 @Injectable()
 export class AuthInterceptor implements HttpInterceptor {
@@ -19,13 +28,14 @@ export class AuthInterceptor implements HttpInterceptor {
     if (token) {
       req = req.clone({headers: req.headers.set('Authorization', token)});
     }
+      //TODO: what to do when the user is saved, but for some reason the token didn't.
 
     if (!req.headers.has('Content-Type')) {
       req = req.clone({ headers: req.headers.set('Content-Type', 'application/json')});
     }
 
     req = req.clone({ headers: req.headers.set('Accept', 'application/json') });
-    req = req.clone({ url: Environment.apiUrl + req.url });
+    req = req.clone({ url: environment.apiUrl + req.url });
 
     //TODO: add toaster pop-up to responses such as "201" object created.
     //TODO: add caching
@@ -33,41 +43,45 @@ export class AuthInterceptor implements HttpInterceptor {
     return next.handle(req).pipe(
       tap((event: HttpEvent<any>) => {
         if (event instanceof HttpResponse) {
-          token = event.headers.get('token');
+          let token = event.headers.get('Token');
+          let refresh = event.headers.get('Refresh');
 
           if (token) {
             this._appService.setAuthToken(token);
           }
 
-          let camelCaseObj = this.keysToCamelCase(event.body);
-          return event.clone({body: camelCaseObj});
+          if ( refresh ) {
+            this._appService.setRefreshToken(refresh);
+          }
+
+          //TODO: globally intercept the body response and change body object keys to camel case.
+          // This does it, but the component data response isnt updated.
+          // return event.clone({body: SnakeToCamel.do(event.body)});
         }
+      },
+      (err: any) => {
+        let errMsg: string;
+
+        if (err instanceof HttpErrorResponse) {
+          if (err.status === 401) {
+            this._appService.clear();
+            this._router.navigate(['/login']);
+          } else {
+            const error = err.message || JSON.stringify(err.error);
+            errMsg = `${err.status} - ${err.statusText || ''} Details: ${err}`;
+          }
+
+        } else {
+          errMsg = err.message ? err.message : err.toString();
+        }
+        return throwError(errMsg);
       })
-    )
-
-  }
-
-  private keysToCamelCase(obj) {
-    if (obj === Object(obj) && !Array.isArray(obj) && typeof obj !== 'function') {
-      const newObj = {};
-
-      Object.keys(obj).forEach(key => {
-        newObj[this.toCamelCase(key)]
-      });
-
-      return newObj;
-    } else  if (Array.isArray(obj)) {
-      return obj.map( i => {
-        return this.keysToCamelCase(i);
-      });
-    }
-  }
-
-  private toCamelCase(string: String) {
-    return string.replace(/([-_][a-z])/ig, ($1) => {
-      return $1.toUpperCase()
-        .replace('-','')
-        .replace('_','')
-    });
+    );
   }
 }
+
+export const AuthInterceptorProvider = {
+  provide: HTTP_INTERCEPTORS,
+  useClass: AuthInterceptor,
+  multi: true,
+};

@@ -8,12 +8,13 @@ import {HttpClientModule} from '@angular/common/http';
 import { LoginComponent } from './auth/login/login.component';
 import { RegisterComponent } from './auth/register/register.component';
 import { AuthModule } from './auth/auth.module';
-import {FormsModule} from '@angular/forms';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { SidebarComponent } from './_layout/sidebar/sidebar.component';
 import { IndexComponent } from './_layout/index/index.component';
 import { NavbarComponent } from './_layout/navbar/navbar.component';
 import { TestComponent } from './dashboard/test/test.component';
+import {AuthInterceptorProvider} from './_etc/AuthInterceptor';
 
 @NgModule({
   declarations: [
@@ -32,9 +33,10 @@ import { TestComponent } from './dashboard/test/test.component';
     HttpClientModule,
     FormsModule,
     NgbModule,
-    AuthModule
+    AuthModule,
+    ReactiveFormsModule
   ],
-  providers: [],
+  providers: [AuthInterceptorProvider],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

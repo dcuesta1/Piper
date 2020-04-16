@@ -2,11 +2,16 @@
 
 namespace App\Providers;
 
+use App\Bin\Auth\AuthManager;
+use App\Bin\Auth\Token;
+use App\Bin\Auth\User;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
-use Illuminate\Support\Facades\Gate;
+use Illuminate\Support\Facades\{Gate};
 
 class AuthServiceProvider extends ServiceProvider
 {
+
+
     /**
      * The policy mappings for the application.
      *
@@ -25,6 +30,16 @@ class AuthServiceProvider extends ServiceProvider
     {
         $this->registerPolicies();
 
-        //
+    }
+
+    public function register()
+    {
+        $this->app->singleton('Auth', function()
+        {
+            $userModel = new User();
+            $tokenModel = new Token();
+            $request = app(\Illuminate\Http\Request::class);
+            return new AuthManager($userModel, $request, $tokenModel);
+        });
     }
 }

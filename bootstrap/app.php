@@ -36,8 +36,12 @@ $app->singleton(
     App\Console\Kernel::class
 );
 
-$app->singleton('TokenAuthentication', function ($app) {
-    return new \App\Bin\TokenAuthentication();
+//$app->singleton('ApiAuth', function ($app) {
+//    return new \App\Bin\Helpers\ApiAuthHelper();
+//});
+
+$app->singleton('ApiResponse', function ($app) {
+    return new \App\Bin\ApiResponse();
 });
 
 $app->singleton(

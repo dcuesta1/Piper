@@ -57,9 +57,9 @@ export class LocalStorage {
     }
 
     const enhancedData = [];
-    for (const d of data) {
-      enhancedData.push(d);
-    }
+    // for (const d of data) {
+    //   enhancedData.push(d);
+    // }
 
     let record: CacheStorageRecord | null = {
       data: data,

@@ -1,19 +1,35 @@
 {
-  "token": "qweqweqweqweqwe",
-  "user": {
-      "id": 1,
-      "firstName": "Daniel",
-      "lastName": "Cuesta",
-      "email": "cuesta.daniel.ivan@gmail.com",
-      "role": 1,
-      "company": {
-          "id": 1,
-          "name": "Piper, Inc.",
-          "phone": 13212891668,
-          "email": "daniel@piper.com"
-      },
-      "createdAt": "",
-      "modifiedAt": "",
-      "deletedAt": ""
-  }
+  "id":2,
+  "name":"John Smith",
+  "username":"jsmith",
+  "email":"jsmith@mail.com",
+  "phone":"1321321322",
+  "type":4,
+  "subscription_type":0,
+  "subscription_expiration":null,
+  "created_at":"2020-04-07T03:24:26.000000Z",
+  "updated_at":"2020-04-07T03:24:26.000000Z",
+  "deleted_at":null,
+  "spaces":[
+    {
+      "id":1,
+      "name":"Pipers",
+      "description":"A team of web technology enthusiasts.",
+      "created_at":"2020-04-07T03:24:26.000000Z",
+      "updated_at":"2020-04-07T03:24:26.000000Z",
+      "deleted_at":null,
+      "projects":[
+        {
+          "id":1,
+          "space_id":1,
+          "creator_id":2,
+          "name":"Piper",
+          "description":"A ticket tracker program for software development projects.",
+          "repository_url":"https:\/\/github.com\/dcuesta1\/Piper",
+          "created_at":"2020-04-07T03:24:26.000000Z",
+          "updated_at":"2020-04-07T03:24:26.000000Z"
+        }
+      ]
+    }
+  ]
 }

@@ -1,17 +1,36 @@
+<div class="" *ngIf="error">Entered credentials are invalid.</div>
 <div class="login-item">
-  <form action="" method="post" class="form form-login">
+  <form [formGroup]="form" (ngSubmit)="onSubmit()" class="form form-login">
     <div class="form-field">
-      <label class="user" for="login-username"><span class="hidden">Username</span></label>
-      <input id="login-username" type="text" class="form-input" placeholder="Username" required>
+      <label class="username" for="username">
+        <span class="hidden">Username</span>
+      </label>
+      <input
+        id="username"
+        type="text"
+        class="form-input"
+        formControlName="username"
+        placeholder="Username"
+        required>
     </div>
 
     <div class="form-field">
-      <label class="lock" for="login-password"><span class="hidden">Password</span></label>
-      <input id="login-password" type="password" class="form-input" placeholder="Password" required>
+      <label class="lock" for="password">
+        <span class="hidden">Password</span>
+      </label>
+      <input
+        id="password"
+        type="password"
+        formControlName="password"
+        class="form-input"
+        placeholder="Password"
+        (keyup.enter)="onSubmit()"
+        required>
     </div>
 
     <div class="form-field">
-      <input type="submit" value="Log in">
+      <input type="submit" value="Sign in" [ngClass]="{'not-allowed': !allow()}">
     </div>
+    <a routerLink="/password" >Forgot password?</a>
   </form>
 </div>

@@ -1,20 +1,17 @@
-import {Deserializable} from './deserializable.model';
-import {Company} from './company.model';
+import {BaseModel} from './base.model';
 
-export class User implements Deserializable{
+export class User extends BaseModel{
   id: number;
   firstName: string;
   lastName: string;
   email: string;
   role: number;
+  active: boolean;
   createdAt: Date;
   modifiedAt: Date;
   deletedAt: Date;
-  company: Company;
 
-  deserialize(input: any) {
-    Object.assign(this, input);
-    this.company =  new Company().deserialize(input.company);
-    return this;
+  public constructor( attr: any, toCamel = true){
+    super(attr, toCamel);
   }
 }

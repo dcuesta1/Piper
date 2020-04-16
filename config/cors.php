@@ -25,7 +25,7 @@ return [
 
     'allowed_headers' => ['*'],
 
-    'exposed_headers' => false,
+    'exposed_headers' => ['Token', 'Refresh'],
 
     'max_age' => false,
 

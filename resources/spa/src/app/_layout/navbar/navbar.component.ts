@@ -31,8 +31,6 @@ export class NavbarComponent implements OnInit {
     if (index > -1) {
       this.routerPathItems.splice(index, 1);
     }
-
-    console.log(this.routerPathItems);
   }
 
 }

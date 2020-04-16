@@ -2,7 +2,7 @@
   font-weight: 600;
 }
 
-.not-allowed {cursor: not-allowed;}
+.not-allowed {cursor: not-allowed !important;}
 
 .ng-touched.ng-invalid {
   border-color: #e53535 !important;

@@ -1,19 +1,8 @@
 <?php
 
-
 namespace App;
 
+use App\Bin\Auth\Token;
 
-class AuthToken
-{
-    protected  $fillable = ['clientId'];
-    protected $casts = [
-      'id' => 'integer',
-      'user_id' => 'integer',
-    ];
-
-    public function user()
-    {
-        return $this->belongsTo('user');
-    }
-}
+class AuthToken extends Token
+{}

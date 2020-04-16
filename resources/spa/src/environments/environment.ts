@@ -5,13 +5,13 @@
 export const environment = {
   production: false,
   mock: true,
-  apiUrl: 'http://auto.test/api',
+  apiUrl: 'http://piper.localhost/api',
   homeUrl: 'localhost/',
   passwordStrength: '^(((?=.*[a-z])(?=.*[A-Z]))|((?=.*[a-z])(?=.*[0-9]))|((?=.*[A-Z])(?=.*[0-9])))(?=.{6,})',
   const: {
     authToken: 'authToken',
     currentUser: 'user',
-    deviceId: 'device',
+    refresh: 'r',
     impersonate: 'impersonate'
   }
 };

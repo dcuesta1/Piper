@@ -4,30 +4,30 @@
 namespace App\Http\Controllers\Api\V1\Auth;
 
 
-use App\AuthToken;
+use App\{AuthToken, User};
+use App\Bin\Auth\AuthFacade as Auth;
 use App\Exceptions\UnauthorizedAccessException;
 use App\Http\Controllers\Controller;
-use Auth;
-use Str;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 
 class LoginController extends Controller
 {
     public function __invoke(Request $req)
     {
-        $credentials = $req->only(['email', 'password']);
-        if (!Auth::attempt($credentials)) {
+        $clientId = $req->has('refresh') ? $req->input('refresh') : null;
+
+        $credentials = $req->only(['username', 'password']);
+        if (!Auth::checkCredentials($credentials)) {
             throw new UnauthorizedAccessException('Invalid login credentials.');
         }
 
-        $token = new AuthToken();
-        $token->value = tokenAuth()->hash();
-        $token->uuid = Str::uuid();
-
-        $user = Auth::user();
-        $user->authTokens()->save($token);
-
-        return response($user)
-            ->header('token', $token->value);
+        $token = Auth::createToken($clientId);
+        //TODO: enhance user model before response
+        return response(Auth::user())
+            ->withHeaders([
+                'token' => $token->value,
+                'refresh' => $token->client_id
+            ]);
     }
 }
